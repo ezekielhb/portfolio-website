@@ -5,13 +5,13 @@
   "framework": null,
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/:all*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2))",
+      "source": "/:path*\\.(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2)",
       "headers": [
         {
           "key": "Cache-Control",
