@@ -1,0 +1,51 @@
+{
+  "name": "Professional Portfolio Template",
+  "version": "1.0.0",
+  "description": "A modern, responsive portfolio website template built with React, TypeScript, and Tailwind CSS",
+  "author": "Alex Smith",
+  "keywords": ["portfolio", "react", "typescript", "tailwind", "shadcn", "responsive"],
+  "template": {
+    "type": "portfolio",
+    "category": "professional",
+    "difficulty": "intermediate",
+    "features": [
+      "Hero section with call-to-action",
+      "About section with profile image",
+      "Portfolio showcase with case studies",
+      "Testimonials carousel",
+      "Contact form with validation",
+      "Responsive design",
+      "Modern animations",
+      "Professional design system"
+    ]
+  },
+  "technology": {
+    "frontend": "React 18",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS",
+    "components": "Shadcn/ui",
+    "routing": "React Router",
+    "build": "Vite",
+    "icons": "Lucide React"
+  },
+  "structure": {
+    "pages": {
+      "home": "Main portfolio page with all sections",
+      "case-study": "Individual project case studies",
+      "404": "Not found page"
+    },
+    "components": {
+      "Hero": "Landing section with introduction",
+      "About": "About me section with skills",
+      "Portfolio": "Project showcase with filtering",
+      "Testimonials": "Client testimonials carousel",
+      "Contact": "Contact form and information"
+    }
+  },
+  "customization": {
+    "colors": "Modify CSS variables in index.css",
+    "content": "Update component content and data",
+    "images": "Replace profile and project images",
+    "branding": "Update name, links, and contact info"
+  }
+}
