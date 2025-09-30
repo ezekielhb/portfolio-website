@@ -116,128 +116,128 @@ export default function ProfileSettings() {
 
   if (isLoading) {
     return (
-      <div className=\"min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center\">
-        <div className=\"text-center\">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
+        <div className="text-center">
          
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
 
-          <p className=\"mt-4 text-slate-600 dark:text-slate-400\">Loading profile...</p>
+          <p className="mt-4 text-slate-600 dark:text-slate-400">Loading profile...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className=\"min-h-screen bg-slate-50 dark:bg-slate-900\">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       {/* Header */}
-      <div className=\"border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900\">
-        <div className=\"max-w-4xl mx-auto px-6 py-6\">
-          <div className=\"flex items-center justify-between\">
-            <div className=\"flex items-center gap-4\">
+      <div className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+        <div className="max-w-4xl mx-auto px-6 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
               <Button
-                variant=\"ghost\"
+                variant="ghost"
                 onClick={() => navigate('/admin')}
-                className=\"text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400\"
+                className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
               >
-                <ArrowLeft className=\"mr-2 h-4 w-4\" />
+                <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Admin
               </Button>
               <div>
-                <h1 className=\"text-3xl font-bold text-slate-900 dark:text-white\">Profile Settings</h1>
-                <p className=\"text-slate-600 dark:text-slate-400 mt-1\">
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Profile Settings</h1>
+                <p className="text-slate-600 dark:text-slate-400 mt-1">
                   Manage your personal information and public profile
                 </p>
               </div>
             </div>
             <Button
-              type=\"submit\"
-              form=\"profile-form\"
+              type="submit"
+              form="profile-form"
               disabled={updateMutation.isPending}
-              className=\"bg-blue-600 hover:bg-blue-700 text-white\"
+              className="bg-blue-600 hover:bg-blue-700 text-white"
             >
-              <Save className=\"h-4 w-4 mr-2\" />
+              <Save className="h-4 w-4 mr-2" />
               {updateMutation.isPending ? 'Saving...' : 'Save Changes'}
             </Button>
           </div>
         </div>
       </div>
 
-      <div className=\"max-w-4xl mx-auto px-6 py-8\">
-        <form id=\"profile-form\" onSubmit={handleSubmit} className=\"space-y-8\">
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <form id="profile-form" onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"flex items-center gap-2 text-xl text-slate-900 dark:text-white\">
-                <User className=\"h-5 w-5\" />
+              <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
+                <User className="h-5 w-5" />
                 Basic Information
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-6\">
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"name\">Full Name *</Label>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Full Name *</Label>
                   <Input
-                    id=\"name\"
+                    id="name"
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
-                    placeholder=\"Your full name\"
+                    placeholder="Your full name"
                     required
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"title\">Professional Title *</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="title">Professional Title *</Label>
                   <Input
-                    id=\"title\"
+                    id="title"
                     value={formData.title}
                     onChange={(e) => handleInputChange('title', e.target.value)}
-                    placeholder=\"e.g., UI/UX Designer\"
+                    placeholder="e.g., UI/UX Designer"
                     required
                   />
                 </div>
               </div>
 
-              <div className=\"space-y-2\">
-                <Label htmlFor=\"bio\">Bio *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="bio">Bio *</Label>
                 <Textarea
-                  id=\"bio\"
+                  id="bio"
                   value={formData.bio}
                   onChange={(e) => handleInputChange('bio', e.target.value)}
-                  placeholder=\"Tell visitors about yourself...\"
+                  placeholder="Tell visitors about yourself..."
                   rows={4}
                   required
                 />
               </div>
 
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"experience\">Years of Experience *</Label>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="experience">Years of Experience *</Label>
                   <Input
-                    id=\"experience\"
+                    id="experience"
                     value={formData.experience}
                     onChange={(e) => handleInputChange('experience', e.target.value)}
-                    placeholder=\"e.g., 5+ years\"
+                    placeholder="e.g., 5+ years"
                     required
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"availability\">Availability *</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="availability">Availability *</Label>
                   <Input
-                    id=\"availability\"
+                    id="availability"
                     value={formData.availability}
                     onChange={(e) => handleInputChange('availability', e.target.value)}
-                    placeholder=\"e.g., Available for new projects\"
+                    placeholder="e.g., Available for new projects"
                     required
                   />
                 </div>
               </div>
 
-              <div className=\"space-y-2\">
-                <Label htmlFor=\"location\">Location</Label>
+              <div className="space-y-2">
+                <Label htmlFor="location">Location</Label>
                 <Input
-                  id=\"location\"
+                  id="location"
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
-                  placeholder=\"City, Country\"
+                  placeholder="City, Country"
                 />
               </div>
             </CardContent>
@@ -246,35 +246,35 @@ export default function ProfileSettings() {
           {/* Images */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"flex items-center gap-2 text-xl text-slate-900 dark:text-white\">
-                <Upload className=\"h-5 w-5\" />
+              <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
+                <Upload className="h-5 w-5" />
                 Profile Images
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-6\">
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"profileImage\">Profile Image *</Label>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="profileImage">Profile Image *</Label>
                   <Input
-                    id=\"profileImage\"
+                    id="profileImage"
                     value={formData.profile_image}
                     onChange={(e) => handleInputChange('profile_image', e.target.value)}
-                    placeholder=\"Profile image URL\"
+                    placeholder="Profile image URL"
                     required
                   />
-                  <p className=\"text-sm text-slate-500 dark:text-slate-400\">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     This image will appear in the About section
                   </p>
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"heroImage\">Hero Background Image</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="heroImage">Hero Background Image</Label>
                   <Input
-                    id=\"heroImage\"
+                    id="heroImage"
                     value={formData.hero_image}
                     onChange={(e) => handleInputChange('hero_image', e.target.value)}
-                    placeholder=\"Hero section background URL\"
+                    placeholder="Hero section background URL"
                   />
-                  <p className=\"text-sm text-slate-500 dark:text-slate-400\">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     Optional background for hero section
                   </p>
                 </div>
@@ -282,13 +282,13 @@ export default function ProfileSettings() {
 
               {/* Image Preview */}
               {formData.profile_image && (
-                <div className=\"space-y-2\">
+                <div className="space-y-2">
                   <Label>Profile Image Preview</Label>
-                  <div className=\"w-32 h-32 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700\">
+                  <div className="w-32 h-32 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
                     <img
                       src={formData.profile_image}
-                      alt=\"Profile preview\"
-                      className=\"w-full h-full object-cover\"
+                      alt="Profile preview"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
@@ -299,52 +299,52 @@ export default function ProfileSettings() {
           {/* Contact Information */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"flex items-center gap-2 text-xl text-slate-900 dark:text-white\">
-                <Mail className=\"h-5 w-5\" />
+              <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
+                <Mail className="h-5 w-5" />
                 Contact Information
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-6\">
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"email\">Email *</Label>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email *</Label>
                   <Input
-                    id=\"email\"
-                    type=\"email\"
+                    id="email"
+                    type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
-                    placeholder=\"your@email.com\"
+                    placeholder="your@email.com"
                     required
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"phone\">Phone</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone</Label>
                   <Input
-                    id=\"phone\"
+                    id="phone"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
-                    placeholder=\"+1 (555) 123-4567\"
+                    placeholder="+1 (555) 123-4567"
                   />
                 </div>
               </div>
 
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"website\">Website</Label>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="website">Website</Label>
                   <Input
-                    id=\"website\"
+                    id="website"
                     value={formData.website}
                     onChange={(e) => handleInputChange('website', e.target.value)}
-                    placeholder=\"https://yourwebsite.com\"
+                    placeholder="https://yourwebsite.com"
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"resume\">Resume URL</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="resume">Resume URL</Label>
                   <Input
-                    id=\"resume\"
+                    id="resume"
                     value={formData.resume}
                     onChange={(e) => handleInputChange('resume', e.target.value)}
-                    placeholder=\"Link to your resume/CV\"
+                    placeholder="Link to your resume/CV"
                   />
                 </div>
               </div>
@@ -354,71 +354,71 @@ export default function ProfileSettings() {
           {/* Social Links */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"flex items-center gap-2 text-xl text-slate-900 dark:text-white\">
-                <Globe className=\"h-5 w-5\" />
+              <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
+                <Globe className="h-5 w-5" />
                 Social Links
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-6\">
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"linkedin\">LinkedIn</Label>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="linkedin">LinkedIn</Label>
                   <Input
-                    id=\"linkedin\"
+                    id="linkedin"
                     value={formData.social_links.linkedin}
                     onChange={(e) => handleSocialLinkChange('linkedin', e.target.value)}
-                    placeholder=\"https://linkedin.com/in/yourprofile\"
+                    placeholder="https://linkedin.com/in/yourprofile"
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"github\">GitHub</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="github">GitHub</Label>
                   <Input
-                    id=\"github\"
+                    id="github"
                     value={formData.social_links.github}
                     onChange={(e) => handleSocialLinkChange('github', e.target.value)}
-                    placeholder=\"https://github.com/yourusername\"
+                    placeholder="https://github.com/yourusername"
                   />
                 </div>
               </div>
 
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"twitter\">Twitter</Label>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="twitter">Twitter</Label>
                   <Input
-                    id=\"twitter\"
+                    id="twitter"
                     value={formData.social_links.twitter}
                     onChange={(e) => handleSocialLinkChange('twitter', e.target.value)}
-                    placeholder=\"https://twitter.com/yourusername\"
+                    placeholder="https://twitter.com/yourusername"
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"dribbble\">Dribbble</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="dribbble">Dribbble</Label>
                   <Input
-                    id=\"dribbble\"
+                    id="dribbble"
                     value={formData.social_links.dribbble}
                     onChange={(e) => handleSocialLinkChange('dribbble', e.target.value)}
-                    placeholder=\"https://dribbble.com/yourusername\"
+                    placeholder="https://dribbble.com/yourusername"
                   />
                 </div>
               </div>
 
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"behance\">Behance</Label>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="behance">Behance</Label>
                   <Input
-                    id=\"behance\"
+                    id="behance"
                     value={formData.social_links.behance}
                     onChange={(e) => handleSocialLinkChange('behance', e.target.value)}
-                    placeholder=\"https://behance.net/yourusername\"
+                    placeholder="https://behance.net/yourusername"
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"instagram\">Instagram</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="instagram">Instagram</Label>
                   <Input
-                    id=\"instagram\"
+                    id="instagram"
                     value={formData.social_links.instagram}
                     onChange={(e) => handleSocialLinkChange('instagram', e.target.value)}
-                    placeholder=\"https://instagram.com/yourusername\"
+                    placeholder="https://instagram.com/yourusername"
                   />
                 </div>
               </div>
@@ -428,35 +428,35 @@ export default function ProfileSettings() {
           {/* Skills */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"flex items-center gap-2 text-xl text-slate-900 dark:text-white\">
-                <Star className=\"h-5 w-5\" />
+              <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
+                <Star className="h-5 w-5" />
                 Skills
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-4\">
-              <div className=\"flex gap-2\">
+            <CardContent className="space-y-4">
+              <div className="flex gap-2">
                 <Input
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
-                  placeholder=\"Add a skill\"
+                  placeholder="Add a skill"
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSkill())}
                 />
-                <Button type=\"button\" onClick={addSkill} variant=\"outline\">
-                  <Plus className=\"h-4 w-4\" />
+                <Button type="button" onClick={addSkill} variant="outline">
+                  <Plus className="h-4 w-4" />
                 </Button>
               </div>
-              <div className=\"flex flex-wrap gap-2\">
+              <div className="flex flex-wrap gap-2">
                 {formData.skills.map((skill) => (
-                  <Badge key={skill} variant=\"secondary\" className=\"flex items-center gap-1\">
+                  <Badge key={skill} variant="secondary" className="flex items-center gap-1">
                     {skill}
                     <Button
-                      type=\"button\"
-                      variant=\"ghost\"
-                      size=\"sm\"
+                      type="button"
+                      variant="ghost"
+                      size="sm"
                       onClick={() => removeSkill(skill)}
-                      className=\"h-4 w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900\"
+                      className="h-4 w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900"
                     >
-                      <X className=\"h-3 w-3\" />
+                      <X className="h-3 w-3" />
                     </Button>
                   </Badge>
                 ))}

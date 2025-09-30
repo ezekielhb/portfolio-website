@@ -177,58 +177,58 @@ export default function ProjectForm() {
 
   if (isLoading) {
     return (
-      <div className=\"min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center\">
-        <div className=\"text-center\">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
+        <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
 
-          <p className=\"mt-4 text-slate-600 dark:text-slate-400\">Loading project...</p>
+          <p className="mt-4 text-slate-600 dark:text-slate-400">Loading project...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className=\"min-h-screen bg-slate-50 dark:bg-slate-900\">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       {/* Header */}
-      <div className=\"border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900\">
-        <div className=\"max-w-4xl mx-auto px-6 py-6\">
-          <div className=\"flex items-center justify-between\">
-            <div className=\"flex items-center gap-4\">
+      <div className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+        <div className="max-w-4xl mx-auto px-6 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
               <Button
-                variant=\"ghost\"
+                variant="ghost"
                 onClick={() => navigate('/admin')}
-                className=\"text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400\"
+                className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
               >
-                <ArrowLeft className=\"mr-2 h-4 w-4\" />
+                <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Admin
               </Button>
               <div>
-                <h1 className=\"text-3xl font-bold text-slate-900 dark:text-white\">
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
                   {isEditing ? 'Edit Project' : 'New Project'}
                 </h1>
-                <p className=\"text-slate-600 dark:text-slate-400 mt-1\">
+                <p className="text-slate-600 dark:text-slate-400 mt-1">
                   {isEditing ? 'Update your project details' : 'Create a new portfolio project'}
                 </p>
               </div>
             </div>
-            <div className=\"flex items-center gap-2\">
+            <div className="flex items-center gap-2">
               {isEditing && (
                 <Button
-                  variant=\"outline\"
+                  variant="outline"
                   onClick={handlePreview}
-                  className=\"border-green-200 text-green-700 hover:bg-green-50 dark:border-green-800 dark:text-green-300 dark:hover:bg-green-950\"
+                  className="border-green-200 text-green-700 hover:bg-green-50 dark:border-green-800 dark:text-green-300 dark:hover:bg-green-950"
                 >
-                  <Eye className=\"h-4 w-4 mr-2\" />
+                  <Eye className="h-4 w-4 mr-2" />
                   Preview
                 </Button>
               )}
               <Button
-                type=\"submit\"
-                form=\"project-form\"
+                type="submit"
+                form="project-form"
                 disabled={createMutation.isPending || updateMutation.isPending}
-                className=\"bg-blue-600 hover:bg-blue-700 text-white\"
+                className="bg-blue-600 hover:bg-blue-700 text-white"
               >
-                <Save className=\"h-4 w-4 mr-2\" />
+                <Save className="h-4 w-4 mr-2" />
                 {createMutation.isPending || updateMutation.isPending ? 'Saving...' : 'Save Project'}
               </Button>
             </div>
@@ -236,112 +236,112 @@ export default function ProjectForm() {
         </div>
       </div>
 
-      <div className=\"max-w-4xl mx-auto px-6 py-8\">
-        <form id=\"project-form\" onSubmit={handleSubmit} className=\"space-y-8\">
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <form id="project-form" onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"text-xl text-slate-900 dark:text-white\">
+              <CardTitle className="text-xl text-slate-900 dark:text-white">
                 Basic Information
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-6\">
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"title\">Project Title *</Label>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="title">Project Title *</Label>
                   <Input
-                    id=\"title\"
+                    id="title"
                     value={formData.title}
                     onChange={(e) => handleInputChange('title', e.target.value)}
-                    placeholder=\"Enter project title\"
+                    placeholder="Enter project title"
                     required
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"subtitle\">Subtitle</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="subtitle">Subtitle</Label>
                   <Input
-                    id=\"subtitle\"
+                    id="subtitle"
                     value={formData.subtitle}
                     onChange={(e) => handleInputChange('subtitle', e.target.value)}
-                    placeholder=\"Project subtitle (optional)\"
+                    placeholder="Project subtitle (optional)"
                   />
                 </div>
               </div>
 
-              <div className=\"space-y-2\">
-                <Label htmlFor=\"description\">Description *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="description">Description *</Label>
                 <Textarea
-                  id=\"description\"
+                  id="description"
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
-                  placeholder=\"Brief project description for portfolio grid\"
+                  placeholder="Brief project description for portfolio grid"
                   rows={3}
                   required
                 />
               </div>
 
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"category\">Category *</Label>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="category">Category *</Label>
                   <Input
-                    id=\"category\"
+                    id="category"
                     value={formData.category}
                     onChange={(e) => handleInputChange('category', e.target.value)}
-                    placeholder=\"e.g., Web App, Mobile App, SaaS\"
+                    placeholder="e.g., Web App, Mobile App, SaaS"
                     required
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"duration\">Duration *</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="duration">Duration *</Label>
                   <Input
-                    id=\"duration\"
+                    id="duration"
                     value={formData.duration}
                     onChange={(e) => handleInputChange('duration', e.target.value)}
-                    placeholder=\"e.g., 3 months\"
+                    placeholder="e.g., 3 months"
                     required
                   />
                 </div>
               </div>
 
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"team\">Team *</Label>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="team">Team *</Label>
                   <Input
-                    id=\"team\"
+                    id="team"
                     value={formData.team}
                     onChange={(e) => handleInputChange('team', e.target.value)}
-                    placeholder=\"e.g., 1 Designer, 2 Developers, 1 PM\"
+                    placeholder="e.g., 1 Designer, 2 Developers, 1 PM"
                     required
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"impact\">Key Impact *</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="impact">Key Impact *</Label>
                   <Input
-                    id=\"impact\"
+                    id="impact"
                     value={formData.impact}
                     onChange={(e) => handleInputChange('impact', e.target.value)}
-                    placeholder=\"e.g., 45% increase in user engagement\"
+                    placeholder="e.g., 45% increase in user engagement"
                     required
                   />
                 </div>
               </div>
 
-              <div className=\"flex items-center gap-6\">
-                <div className=\"flex items-center space-x-2\">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center space-x-2">
                   <Switch
-                    id=\"featured\"
+                    id="featured"
                     checked={formData.featured}
                     onCheckedChange={(checked) => handleInputChange('featured', checked)}
                   />
-                  <Label htmlFor=\"featured\">Featured Project</Label>
+                  <Label htmlFor="featured">Featured Project</Label>
                 </div>
-                <div className=\"flex items-center space-x-2\">
+                <div className="flex items-center space-x-2">
                   <Switch
-                    id=\"published\"
+                    id="published"
                     checked={formData.published}
                     onCheckedChange={(checked) => handleInputChange('published', checked)}
                   />
-                  <Label htmlFor=\"published\">Published</Label>
+                  <Label htmlFor="published">Published</Label>
                 </div>
               </div>
             </CardContent>
@@ -350,60 +350,60 @@ export default function ProjectForm() {
           {/* Images */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"text-xl text-slate-900 dark:text-white\">
+              <CardTitle className="text-xl text-slate-900 dark:text-white">
                 Images
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-6\">
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"image\">Portfolio Grid Image *</Label>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="image">Portfolio Grid Image *</Label>
                   <Input
-                    id=\"image\"
+                    id="image"
                     value={formData.image}
                     onChange={(e) => handleInputChange('image', e.target.value)}
-                    placeholder=\"URL for portfolio grid thumbnail\"
+                    placeholder="URL for portfolio grid thumbnail"
                     required
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"heroImage\">Hero Image *</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="heroImage">Hero Image *</Label>
                   <Input
-                    id=\"heroImage\"
+                    id="heroImage"
                     value={formData.hero_image}
                     onChange={(e) => handleInputChange('hero_image', e.target.value)}
-                    placeholder=\"URL for case study hero image\"
+                    placeholder="URL for case study hero image"
                     required
                   />
                 </div>
               </div>
 
               {/* Gallery Images */}
-              <div className=\"space-y-4\">
+              <div className="space-y-4">
                 <Label>Gallery Images</Label>
-                <div className=\"flex gap-2\">
+                <div className="flex gap-2">
                   <Input
                     value={newImage}
                     onChange={(e) => setNewImage(e.target.value)}
-                    placeholder=\"Add gallery image URL\"
+                    placeholder="Add gallery image URL"
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addImage())}
                   />
-                  <Button type=\"button\" onClick={addImage} variant=\"outline\">
-                    <Plus className=\"h-4 w-4\" />
+                  <Button type="button" onClick={addImage} variant="outline">
+                    <Plus className="h-4 w-4" />
                   </Button>
                 </div>
-                <div className=\"flex flex-wrap gap-2\">
+                <div className="flex flex-wrap gap-2">
                   {formData.images.map((image, index) => (
-                    <div key={index} className=\"flex items-center gap-1 bg-slate-100 dark:bg-slate-800 rounded px-2 py-1\">
-                      <span className=\"text-sm truncate max-w-32\">{image}</span>
+                    <div key={index} className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 rounded px-2 py-1">
+                      <span className="text-sm truncate max-w-32">{image}</span>
                       <Button
-                        type=\"button\"
-                        variant=\"ghost\"
-                        size=\"sm\"
+                        type="button"
+                        variant="ghost"
+                        size="sm"
                         onClick={() => removeImage(image)}
-                        className=\"h-4 w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900\"
+                        className="h-4 w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900"
                       >
-                        <X className=\"h-3 w-3\" />
+                        <X className="h-3 w-3" />
                       </Button>
                     </div>
                   ))}
@@ -415,34 +415,34 @@ export default function ProjectForm() {
           {/* Tags */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"text-xl text-slate-900 dark:text-white\">
+              <CardTitle className="text-xl text-slate-900 dark:text-white">
                 Tags
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-4\">
-              <div className=\"flex gap-2\">
+            <CardContent className="space-y-4">
+              <div className="flex gap-2">
                 <Input
                   value={newTag}
                   onChange={(e) => setNewTag(e.target.value)}
-                  placeholder=\"Add a tag\"
+                  placeholder="Add a tag"
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                 />
-                <Button type=\"button\" onClick={addTag} variant=\"outline\">
-                  <Plus className=\"h-4 w-4\" />
+                <Button type="button" onClick={addTag} variant="outline">
+                  <Plus className="h-4 w-4" />
                 </Button>
               </div>
-              <div className=\"flex flex-wrap gap-2\">
+              <div className="flex flex-wrap gap-2">
                 {formData.tags.map((tag) => (
-                  <Badge key={tag} variant=\"secondary\" className=\"flex items-center gap-1\">
+                  <Badge key={tag} variant="secondary" className="flex items-center gap-1">
                     {tag}
                     <Button
-                      type=\"button\"
-                      variant=\"ghost\"
-                      size=\"sm\"
+                      type="button"
+                      variant="ghost"
+                      size="sm"
                       onClick={() => removeTag(tag)}
-                      className=\"h-4 w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900\"
+                      className="h-4 w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900"
                     >
-                      <X className=\"h-3 w-3\" />
+                      <X className="h-3 w-3" />
                     </Button>
                   </Badge>
                 ))}
@@ -453,76 +453,76 @@ export default function ProjectForm() {
           {/* Case Study Content */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"text-xl text-slate-900 dark:text-white\">
+              <CardTitle className="text-xl text-slate-900 dark:text-white">
                 Case Study Content
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-6\">
-              <div className=\"space-y-2\">
-                <Label htmlFor=\"overview\">Overview *</Label>
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="overview">Overview *</Label>
                 <Textarea
-                  id=\"overview\"
+                  id="overview"
                   value={formData.overview}
                   onChange={(e) => handleInputChange('overview', e.target.value)}
-                  placeholder=\"Project overview and context\"
+                  placeholder="Project overview and context"
                   rows={4}
                   required
                 />
               </div>
 
-              <div className=\"space-y-2\">
-                <Label htmlFor=\"problem\">Problem Statement *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="problem">Problem Statement *</Label>
                 <Textarea
-                  id=\"problem\"
+                  id="problem"
                   value={formData.problem}
                   onChange={(e) => handleInputChange('problem', e.target.value)}
-                  placeholder=\"The problem this project solves\"
+                  placeholder="The problem this project solves"
                   rows={4}
                   required
                 />
               </div>
 
-              <div className=\"space-y-2\">
-                <Label htmlFor=\"solution\">Solution *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="solution">Solution *</Label>
                 <Textarea
-                  id=\"solution\"
+                  id="solution"
                   value={formData.solution}
                   onChange={(e) => handleInputChange('solution', e.target.value)}
-                  placeholder=\"How you solved the problem\"
+                  placeholder="How you solved the problem"
                   rows={4}
                   required
                 />
               </div>
 
               {/* Design Process */}
-              <div className=\"space-y-4\">
+              <div className="space-y-4">
                 <Label>Design Process</Label>
-                <div className=\"flex gap-2\">
+                <div className="flex gap-2">
                   <Input
                     value={newProcessStep}
                     onChange={(e) => setNewProcessStep(e.target.value)}
-                    placeholder=\"Add process step\"
+                    placeholder="Add process step"
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addProcessStep())}
                   />
-                  <Button type=\"button\" onClick={addProcessStep} variant=\"outline\">
-                    <Plus className=\"h-4 w-4\" />
+                  <Button type="button" onClick={addProcessStep} variant="outline">
+                    <Plus className="h-4 w-4" />
                   </Button>
                 </div>
-                <div className=\"space-y-2\">
+                <div className="space-y-2">
                   {formData.process.map((step, index) => (
-                    <div key={index} className=\"flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800 rounded\">
-                      <span className=\"w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold\">
+                    <div key={index} className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800 rounded">
+                      <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
                         {index + 1}
                       </span>
-                      <span className=\"flex-1\">{step}</span>
+                      <span className="flex-1">{step}</span>
                       <Button
-                        type=\"button\"
-                        variant=\"ghost\"
-                        size=\"sm\"
+                        type="button"
+                        variant="ghost"
+                        size="sm"
                         onClick={() => removeProcessStep(index)}
-                        className=\"hover:bg-red-100 dark:hover:bg-red-900\"
+                        className="hover:bg-red-100 dark:hover:bg-red-900"
                       >
-                        <X className=\"h-4 w-4\" />
+                        <X className="h-4 w-4" />
                       </Button>
                     </div>
                   ))}
@@ -530,31 +530,31 @@ export default function ProjectForm() {
               </div>
 
               {/* Results */}
-              <div className=\"space-y-4\">
+              <div className="space-y-4">
                 <Label>Results & Impact</Label>
-                <div className=\"flex gap-2\">
+                <div className="flex gap-2">
                   <Input
                     value={newResult}
                     onChange={(e) => setNewResult(e.target.value)}
-                    placeholder=\"Add a result or impact metric\"
+                    placeholder="Add a result or impact metric"
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addResult())}
                   />
-                  <Button type=\"button\" onClick={addResult} variant=\"outline\">
-                    <Plus className=\"h-4 w-4\" />
+                  <Button type="button" onClick={addResult} variant="outline">
+                    <Plus className="h-4 w-4" />
                   </Button>
                 </div>
-                <div className=\"grid md:grid-cols-2 gap-4\">
+                <div className="grid md:grid-cols-2 gap-4">
                   {formData.results.map((result, index) => (
-                    <div key={index} className=\"flex items-center gap-2 p-3 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded\">
-                      <span className=\"flex-1 text-sm\">{result}</span>
+                    <div key={index} className="flex items-center gap-2 p-3 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded">
+                      <span className="flex-1 text-sm">{result}</span>
                       <Button
-                        type=\"button\"
-                        variant=\"ghost\"
-                        size=\"sm\"
+                        type="button"
+                        variant="ghost"
+                        size="sm"
                         onClick={() => removeResult(index)}
-                        className=\"hover:bg-red-100 dark:hover:bg-red-900\"
+                        className="hover:bg-red-100 dark:hover:bg-red-900"
                       >
-                        <X className=\"h-4 w-4\" />
+                        <X className="h-4 w-4" />
                       </Button>
                     </div>
                   ))}
@@ -566,28 +566,28 @@ export default function ProjectForm() {
           {/* Links */}
           <Card>
             <CardHeader>
-              <CardTitle className=\"text-xl text-slate-900 dark:text-white\">
+              <CardTitle className="text-xl text-slate-900 dark:text-white">
                 Project Links
               </CardTitle>
             </CardHeader>
-            <CardContent className=\"space-y-6\">
-              <div className=\"grid md:grid-cols-2 gap-6\">
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"liveUrl\">Live URL</Label>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="liveUrl">Live URL</Label>
                   <Input
-                    id=\"liveUrl\"
+                    id="liveUrl"
                     value={formData.live_url}
                     onChange={(e) => handleInputChange('live_url', e.target.value)}
-                    placeholder=\"https://example.com\"
+                    placeholder="https://example.com"
                   />
                 </div>
-                <div className=\"space-y-2\">
-                  <Label htmlFor=\"githubUrl\">GitHub URL</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="githubUrl">GitHub URL</Label>
                   <Input
-                    id=\"githubUrl\"
+                    id="githubUrl"
                     value={formData.github_url}
                     onChange={(e) => handleInputChange('github_url', e.target.value)}
-                    placeholder=\"https://github.com/username/repo\"
+                    placeholder="https://github.com/username/repo"
                   />
                 </div>
               </div>
