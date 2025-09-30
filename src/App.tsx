@@ -6,6 +6,7 @@ import Index from './pages/Index';
 import CaseStudy from './pages/CaseStudy';
 import Admin from './pages/Admin';
 import ProjectForm from './pages/ProjectForm';
+import AdminLogin from './pages/AdminLogin';
 import ProfileSettings from './pages/ProfileSettings';
 import TestimonialManagement from './pages/TestimonialManagement';
 import ContactSettings from './pages/ContactSettings';
@@ -30,7 +31,8 @@ const App = () => (
           <Route path="/admin/contact" element={<ContactSettings />} />
           <Route path="/admin/test" element={<AdminTest />} />
           <Route path="*" element={<NotFound />} />
-        </Routes>
+          <Route path="/admin/login" element={<AdminLogin />} />
+</Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

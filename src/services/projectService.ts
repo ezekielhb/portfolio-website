@@ -87,6 +87,12 @@ export class ProjectService {
       updated_at: now,
     };
 
+    // Ensure user_id exists: use admin user id from environment for single-user portfolio
+    const adminUserId = import.meta.env.VITE_ADMIN_USER_ID || null;
+    if (!project.user_id && adminUserId) {
+      project.user_id = adminUserId;
+    }
+
     const { data, error } = await supabase
       .from(PROJECTS_TABLE)
       .insert(project)

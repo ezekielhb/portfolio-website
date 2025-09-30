@@ -16,6 +16,12 @@ import { toast } from 'sonner';
 export default function ProjectForm() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const ok = localStorage.getItem('admin_logged_in') === 'true';
+    if (!ok) navigate('/admin/login');
+  }, []);
+
   const queryClient = useQueryClient();
   const isEditing = id !== 'new';
 
