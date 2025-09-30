@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,11 +9,19 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  //  Redirect if already logged in
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('admin_logged_in');
+    if (isLoggedIn === 'true') {
+      navigate('/admin');
+    }
+  }, [navigate]);
+
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     const envPass = import.meta.env.VITE_ADMIN_PASSWORD || 'admin123';
+
     if (password === envPass) {
-      // set a simple token in localStorage (expires when user clears storage)
       localStorage.setItem('admin_logged_in', 'true');
       toast.success('Logged in');
       navigate('/admin');
