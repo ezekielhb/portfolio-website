@@ -3,14 +3,14 @@ export interface ProfileSettings {
   name: string;
   title: string;
   bio: string;
-  profileImage: string;
-  heroImage?: string;
+  profile_image: string;
+  hero_image?: string;
   location?: string;
   email: string;
   phone?: string;
   website?: string;
   resume?: string;
-  socialLinks: {
+  social_links: {
     linkedin?: string;
     github?: string;
     twitter?: string;
@@ -21,8 +21,8 @@ export interface ProfileSettings {
   skills: string[];
   experience: string;
   availability: string;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ContactSettings {
@@ -30,7 +30,7 @@ export interface ContactSettings {
   email: string;
   phone?: string;
   address?: string;
-  socialLinks: {
+  social_links: {
     linkedin?: string;
     github?: string;
     twitter?: string;
@@ -38,40 +38,40 @@ export interface ContactSettings {
     behance?: string;
     instagram?: string;
   };
-  contactFormWebhook?: string;
-  autoReplyEnabled: boolean;
-  autoReplyMessage?: string;
-  createdAt: string;
-  updatedAt: string;
+  contact_form_webhook?: string;
+  auto_reply_enabled: boolean;
+  auto_reply_message?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Testimonial {
   id: string;
-  clientName: string;
-  clientTitle: string;
-  clientCompany: string;
-  clientImage?: string;
-  testimonialText: string;
+  client_name: string;
+  client_title: string;
+  client_company: string;
+  client_image?: string;
+  testimonial_text: string;
   rating?: number;
-  projectId?: string;
+  project_id?: string;
   featured: boolean;
   published: boolean;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface CreateProfileData {
   name: string;
   title: string;
   bio: string;
-  profileImage: string;
-  heroImage?: string;
+  profile_image: string;
+  hero_image?: string;
   location?: string;
   email: string;
   phone?: string;
   website?: string;
   resume?: string;
-  socialLinks: {
+  social_links: {
     linkedin?: string;
     github?: string;
     twitter?: string;
@@ -88,7 +88,7 @@ export interface CreateContactData {
   email: string;
   phone?: string;
   address?: string;
-  socialLinks: {
+  social_links: {
     linkedin?: string;
     github?: string;
     twitter?: string;
@@ -96,19 +96,19 @@ export interface CreateContactData {
     behance?: string;
     instagram?: string;
   };
-  contactFormWebhook?: string;
-  autoReplyEnabled: boolean;
-  autoReplyMessage?: string;
+  contact_form_webhook?: string;
+  auto_reply_enabled: boolean;
+  auto_reply_message?: string;
 }
 
 export interface CreateTestimonialData {
-  clientName: string;
-  clientTitle: string;
-  clientCompany: string;
-  clientImage?: string;
-  testimonialText: string;
+  client_name: string;
+  client_title: string;
+  client_company: string;
+  client_image?: string;
+  testimonial_text: string;
   rating?: number;
-  projectId?: string;
+  project_id?: string;
   featured: boolean;
   published: boolean;
 }

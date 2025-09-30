@@ -81,12 +81,32 @@ export default function Admin() {
   }
 
   if (error) {
+    const isEnvError = error.message.includes('Missing Supabase environment variables');
     return (
       <div className=\"min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center\">
-        <Card className=\"max-w-md w-full\">
+        <Card className=\"max-w-lg w-full\">
           <CardContent className=\"p-6 text-center\">
-            <p className=\"text-red-600 dark:text-red-400 mb-4\">Failed to load projects</p>
-            <p className=\"text-slate-600 dark:text-slate-400\">{error.message}</p>
+            <p className=\"text-red-600 dark:text-red-400 mb-4 font-semibold\">Failed to load projects</p>
+            <p className=\"text-slate-600 dark:text-slate-400 mb-6\">{error.message}</p>
+            {isEnvError && (
+              <div className=\"text-left space-y-3\">
+                <p className=\"font-semibold text-slate-800 dark:text-slate-200\">Setup Required:</p>
+                <ol className=\"list-decimal list-inside space-y-1 text-sm text-slate-600 dark:text-slate-400\">
+                  <li>Create a Supabase account and project</li>
+                  <li>Run the database-schema.sql in Supabase SQL Editor</li>
+                  <li>Update .env.local with your Supabase credentials</li>
+                  <li>Restart the development server</li>
+                </ol>
+                <div className=\"flex gap-2 justify-center mt-4\">
+                  <Button onClick={() => navigate('/')} variant=\"outline\">
+                    Back to Home
+                  </Button>
+                  <Button onClick={() => navigate('/admin/test')} className=\"bg-blue-600 hover:bg-blue-700 text-white\">
+                    Test Route
+                  </Button>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -233,7 +253,11 @@ export default function Admin() {
         <Card className=\"mb-8\">
           <CardContent className=\"p-6\">
             <Input
-              placeholder=\"Search projects by title, category, or tags...\"\n              value={searchTerm}\n              onChange={(e) => setSearchTerm(e.target.value)}\n              className=\"max-w-md\"\n            />
+              placeholder="Search projects by title, category, or tags..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="max-w-md"
+            />
           </CardContent>
         </Card>
 
@@ -356,7 +380,7 @@ function ProjectCard({
             <div className=\"flex items-center gap-6 text-sm text-slate-600 dark:text-slate-400 mb-4\">
               <span>Duration: {project.duration}</span>
               <span>Team: {project.team}</span>
-              <span>Created: {new Date(project.createdAt).toLocaleDateString()}</span>
+              <span>Created: {new Date(project.created_at).toLocaleDateString()}</span>
             </div>
 
             {/* Actions */}

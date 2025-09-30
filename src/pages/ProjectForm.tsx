@@ -24,7 +24,7 @@ export default function ProjectForm() {
     title: '',
     subtitle: '',
     description: '',
-    heroImage: '',
+    hero_image: '',
     image: '',
     images: [],
     tags: [],
@@ -38,8 +38,8 @@ export default function ProjectForm() {
     duration: '',
     team: '',
     impact: '',
-    liveUrl: '',
-    githubUrl: '',
+    live_url: '',
+    github_url: '',
     published: false
   });
 
@@ -90,7 +90,7 @@ export default function ProjectForm() {
         title: project.title,
         subtitle: project.subtitle || '',
         description: project.description,
-        heroImage: project.heroImage,
+        hero_image: project.hero_image,
         image: project.image,
         images: project.images,
         tags: project.tags,
@@ -104,8 +104,8 @@ export default function ProjectForm() {
         duration: project.duration,
         team: project.team,
         impact: project.impact,
-        liveUrl: project.liveUrl || '',
-        githubUrl: project.githubUrl || '',
+        live_url: project.live_url || '',
+        github_url: project.github_url || '',
         published: project.published
       });
     }
@@ -369,8 +369,8 @@ export default function ProjectForm() {
                   <Label htmlFor=\"heroImage\">Hero Image *</Label>
                   <Input
                     id=\"heroImage\"
-                    value={formData.heroImage}
-                    onChange={(e) => handleInputChange('heroImage', e.target.value)}
+                    value={formData.hero_image}
+                    onChange={(e) => handleInputChange('hero_image', e.target.value)}
                     placeholder=\"URL for case study hero image\"
                     required
                   />
@@ -575,8 +575,8 @@ export default function ProjectForm() {
                   <Label htmlFor=\"liveUrl\">Live URL</Label>
                   <Input
                     id=\"liveUrl\"
-                    value={formData.liveUrl}
-                    onChange={(e) => handleInputChange('liveUrl', e.target.value)}
+                    value={formData.live_url}
+                    onChange={(e) => handleInputChange('live_url', e.target.value)}
                     placeholder=\"https://example.com\"
                   />
                 </div>
@@ -584,8 +584,8 @@ export default function ProjectForm() {
                   <Label htmlFor=\"githubUrl\">GitHub URL</Label>
                   <Input
                     id=\"githubUrl\"
-                    value={formData.githubUrl}
-                    onChange={(e) => handleInputChange('githubUrl', e.target.value)}
+                    value={formData.github_url}
+                    onChange={(e) => handleInputChange('github_url', e.target.value)}
                     placeholder=\"https://github.com/username/repo\"
                   />
                 </div>

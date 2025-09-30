@@ -3,7 +3,7 @@ export interface Project {
   title: string;
   subtitle?: string;
   description: string;
-  heroImage: string;
+  hero_image: string;
   image: string;
   images: string[];
   tags: string[];
@@ -17,10 +17,10 @@ export interface Project {
   duration: string;
   team: string;
   impact: string;
-  liveUrl?: string;
-  githubUrl?: string;
-  createdAt: string;
-  updatedAt: string;
+  live_url?: string;
+  github_url?: string;
+  created_at: string;
+  updated_at: string;
   published: boolean;
 }
 
@@ -28,7 +28,7 @@ export interface CreateProjectData {
   title: string;
   subtitle?: string;
   description: string;
-  heroImage: string;
+  hero_image: string;
   image: string;
   images: string[];
   tags: string[];
@@ -42,8 +42,8 @@ export interface CreateProjectData {
   duration: string;
   team: string;
   impact: string;
-  liveUrl?: string;
-  githubUrl?: string;
+  live_url?: string;
+  github_url?: string;
   published: boolean;
 }
 

@@ -9,6 +9,7 @@ import ProjectForm from './pages/ProjectForm';
 import ProfileSettings from './pages/ProfileSettings';
 import TestimonialManagement from './pages/TestimonialManagement';
 import ContactSettings from './pages/ContactSettings';
+import AdminTest from './pages/AdminTest';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/admin/profile" element={<ProfileSettings />} />
           <Route path="/admin/testimonials" element={<TestimonialManagement />} />
           <Route path="/admin/contact" element={<ContactSettings />} />
+          <Route path="/admin/test" element={<AdminTest />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
