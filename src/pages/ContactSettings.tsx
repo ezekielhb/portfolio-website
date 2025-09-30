@@ -21,7 +21,7 @@ export default function ContactSettings() {
     email: '',
     phone: '',
     address: '',
-    socialLinks: {
+    social_links: {
       linkedin: '',
       github: '',
       twitter: '',
@@ -29,9 +29,9 @@ export default function ContactSettings() {
       behance: '',
       instagram: ''
     },
-    contactFormWebhook: '',
-    autoReplyEnabled: false,
-    autoReplyMessage: ''
+    contact_form_webhook: '',
+    auto_reply_enabled: false,
+    auto_reply_message: ''
   });
 
   // Fetch contact settings
@@ -62,10 +62,10 @@ export default function ContactSettings() {
         email: contactSettings.email,
         phone: contactSettings.phone || '',
         address: contactSettings.address || '',
-        socialLinks: contactSettings.socialLinks,
-        contactFormWebhook: contactSettings.contactFormWebhook || '',
-        autoReplyEnabled: contactSettings.autoReplyEnabled,
-        autoReplyMessage: contactSettings.autoReplyMessage || ''
+        social_links: contactSettings.social_links,
+        contact_form_webhook: contactSettings.contact_form_webhook || '',
+        auto_reply_enabled: contactSettings.auto_reply_enabled,
+        auto_reply_message: contactSettings.auto_reply_message || ''
       });
     }
   }, [contactSettings]);
@@ -82,8 +82,8 @@ export default function ContactSettings() {
   const handleSocialLinkChange = (platform: string, value: string) => {
     setFormData(prev => ({
       ...prev,
-      socialLinks: {
-        ...prev.socialLinks,
+      social_links: {
+        ...prev.social_links,
         [platform]: value
       }
     }));
@@ -205,7 +205,7 @@ export default function ContactSettings() {
                   <Label htmlFor="linkedin">LinkedIn</Label>
                   <Input
                     id="linkedin"
-                    value={formData.socialLinks.linkedin}
+                    value={formData.social_links.linkedin}
                     onChange={(e) => handleSocialLinkChange('linkedin', e.target.value)}
                     placeholder="https://linkedin.com/in/yourprofile"
                   />
@@ -214,7 +214,7 @@ export default function ContactSettings() {
                   <Label htmlFor="github">GitHub</Label>
                   <Input
                     id="github"
-                    value={formData.socialLinks.github}
+                    value={formData.social_links.github}
                     onChange={(e) => handleSocialLinkChange('github', e.target.value)}
                     placeholder="https://github.com/yourusername"
                   />
@@ -226,7 +226,7 @@ export default function ContactSettings() {
                   <Label htmlFor="twitter">Twitter</Label>
                   <Input
                     id="twitter"
-                    value={formData.socialLinks.twitter}
+                    value={formData.social_links.twitter}
                     onChange={(e) => handleSocialLinkChange('twitter', e.target.value)}
                     placeholder="https://twitter.com/yourusername"
                   />
@@ -235,7 +235,7 @@ export default function ContactSettings() {
                   <Label htmlFor="dribbble">Dribbble</Label>
                   <Input
                     id="dribbble"
-                    value={formData.socialLinks.dribbble}
+                    value={formData.social_links.dribbble}
                     onChange={(e) => handleSocialLinkChange('dribbble', e.target.value)}
                     placeholder="https://dribbble.com/yourusername"
                   />
@@ -247,7 +247,7 @@ export default function ContactSettings() {
                   <Label htmlFor="behance">Behance</Label>
                   <Input
                     id="behance"
-                    value={formData.socialLinks.behance}
+                    value={formData.social_links.behance}
                     onChange={(e) => handleSocialLinkChange('behance', e.target.value)}
                     placeholder="https://behance.net/yourusername"
                   />
@@ -256,7 +256,7 @@ export default function ContactSettings() {
                   <Label htmlFor="instagram">Instagram</Label>
                   <Input
                     id="instagram"
-                    value={formData.socialLinks.instagram}
+                    value={formData.social_links.instagram}
                     onChange={(e) => handleSocialLinkChange('instagram', e.target.value)}
                     placeholder="https://instagram.com/yourusername"
                   />
@@ -278,8 +278,8 @@ export default function ContactSettings() {
                 <Label htmlFor="webhook">Contact Form Webhook URL</Label>
                 <Input
                   id="webhook"
-                  value={formData.contactFormWebhook}
-                  onChange={(e) => handleInputChange('contactFormWebhook', e.target.value)}
+                  value={formData.contact_form_webhook}
+                  onChange={(e) => handleInputChange('contact_form_webhook', e.target.value)}
                   placeholder="https://your-webhook-url.com/contact"
                 />
                 <p className="text-sm text-slate-500 dark:text-slate-400">
@@ -290,19 +290,19 @@ export default function ContactSettings() {
               <div className="flex items-center space-x-2">
                 <Switch
                   id="autoReply"
-                  checked={formData.autoReplyEnabled}
-                  onCheckedChange={(checked) => handleInputChange('autoReplyEnabled', checked)}
+                  checked={formData.auto_reply_enabled}
+                  onCheckedChange={(checked) => handleInputChange('auto_reply_enabled', checked)}
                 />
                 <Label htmlFor="autoReply">Enable Auto-Reply</Label>
               </div>
 
-              {formData.autoReplyEnabled && (
+              {formData.auto_reply_enabled && (
                 <div className="space-y-2">
                   <Label htmlFor="autoReplyMessage">Auto-Reply Message</Label>
                   <Textarea
                     id="autoReplyMessage"
-                    value={formData.autoReplyMessage}
-                    onChange={(e) => handleInputChange('autoReplyMessage', e.target.value)}
+                    value={formData.auto_reply_message}
+                    onChange={(e) => handleInputChange('auto_reply_message', e.target.value)}
                     placeholder="Thank you for your message! I'll get back to you soon."
                     rows={4}
                   />

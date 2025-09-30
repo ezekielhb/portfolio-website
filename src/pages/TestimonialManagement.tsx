@@ -22,13 +22,13 @@ export default function TestimonialManagement() {
 
   // Form state for creating/editing testimonials
   const [formData, setFormData] = useState<CreateTestimonialData>({
-    clientName: '',
-    clientTitle: '',
-    clientCompany: '',
-    clientImage: '',
-    testimonialText: '',
+    client_name: '',
+    client_title: '',
+    client_company: '',
+    client_image: '',
+    testimonial_text: '',
     rating: 5,
-    projectId: '',
+    project_id: '',
     featured: false,
     published: true
   });
@@ -103,20 +103,20 @@ export default function TestimonialManagement() {
   });
 
   const filteredTestimonials = testimonials.filter(testimonial =>
-    testimonial.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    testimonial.clientCompany.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    testimonial.testimonialText.toLowerCase().includes(searchTerm.toLowerCase())
+    testimonial.client_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    testimonial.client_company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    testimonial.testimonial_text.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const resetForm = () => {
     setFormData({
-      clientName: '',
-      clientTitle: '',
-      clientCompany: '',
-      clientImage: '',
-      testimonialText: '',
+      client_name: '',
+      client_title: '',
+      client_company: '',
+      client_image: '',
+      testimonial_text: '',
       rating: 5,
-      projectId: '',
+      project_id: '',
       featured: false,
       published: true
     });
@@ -126,13 +126,13 @@ export default function TestimonialManagement() {
 
   const handleEdit = (testimonial: Testimonial) => {
     setFormData({
-      clientName: testimonial.clientName,
-      clientTitle: testimonial.clientTitle,
-      clientCompany: testimonial.clientCompany,
-      clientImage: testimonial.clientImage || '',
-      testimonialText: testimonial.testimonialText,
+      client_name: testimonial.client_name,
+      client_title: testimonial.client_title,
+      client_company: testimonial.client_company,
+      client_image: testimonial.client_image || '',
+      testimonial_text: testimonial.testimonial_text,
       rating: testimonial.rating || 5,
-      projectId: testimonial.projectId || '',
+      project_id: testimonial.project_id || '',
       featured: testimonial.featured,
       published: testimonial.published
     });
@@ -157,10 +157,10 @@ export default function TestimonialManagement() {
 
   if (isLoading) {
     return (
-      <div className=\"min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center\">
-        <div className=\"text-center\">
-          <div className=\"animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto\"></div>
-          <p className=\"mt-4 text-slate-600 dark:text-slate-400\">Loading testimonials...</p>
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-slate-600 dark:text-slate-400">Loading testimonials...</p>
         </div>
       </div>
     );
@@ -168,11 +168,11 @@ export default function TestimonialManagement() {
 
   if (error) {
     return (
-      <div className=\"min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center\">
-        <Card className=\"max-w-md w-full\">
-          <CardContent className=\"p-6 text-center\">
-            <p className=\"text-red-600 dark:text-red-400 mb-4\">Failed to load testimonials</p>
-            <p className=\"text-slate-600 dark:text-slate-400\">{error.message}</p>
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
+        <Card className="max-w-md w-full">
+          <CardContent className="p-6 text-center">
+            <p className="text-red-600 dark:text-red-400 mb-4">Failed to load testimonials</p>
+            <p className="text-slate-600 dark:text-slate-400">{error.message}</p>
           </CardContent>
         </Card>
       </div>
@@ -180,80 +180,80 @@ export default function TestimonialManagement() {
   }
 
   return (
-    <div className=\"min-h-screen bg-slate-50 dark:bg-slate-900\">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       {/* Header */}
-      <div className=\"border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900\">
-        <div className=\"max-w-7xl mx-auto px-6 py-6\">
-          <div className=\"flex items-center justify-between\">
-            <div className=\"flex items-center gap-4\">
+      <div className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
               <Button
-                variant=\"ghost\"
+                variant="ghost"
                 onClick={() => navigate('/admin')}
-                className=\"text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400\"
+                className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
               >
-                <ArrowLeft className=\"mr-2 h-4 w-4\" />
+                <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Admin
               </Button>
               <div>
-                <h1 className=\"text-3xl font-bold text-slate-900 dark:text-white\">Testimonial Management</h1>
-                <p className=\"text-slate-600 dark:text-slate-400 mt-1\">
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Testimonial Management</h1>
+                <p className="text-slate-600 dark:text-slate-400 mt-1">
                   Manage client testimonials and reviews
                 </p>
               </div>
             </div>
             <Button
               onClick={() => setIsCreating(true)}
-              className=\"bg-blue-600 hover:bg-blue-700 text-white\"
+              className="bg-blue-600 hover:bg-blue-700 text-white"
             >
-              <Plus className=\"h-4 w-4 mr-2\" />
+              <Plus className="h-4 w-4 mr-2" />
               New Testimonial
             </Button>
           </div>
         </div>
       </div>
 
-      <div className=\"max-w-7xl mx-auto px-6 py-8\">
-        <div className=\"grid lg:grid-cols-3 gap-8\">
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           {/* Testimonials List */}
-          <div className=\"lg:col-span-2 space-y-6\">
+          <div className="lg:col-span-2 space-y-6">
             {/* Stats */}
-            <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6\">
-              <Card className=\"border-0 shadow-lg bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950\">
-                <CardContent className=\"p-6\">
-                  <div className=\"flex items-center justify-between\">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <p className=\"text-sm font-medium text-blue-600 dark:text-blue-400\">Total</p>
-                      <p className=\"text-3xl font-bold text-blue-900 dark:text-blue-100\">{testimonials.length}</p>
+                      <p className="text-sm font-medium text-blue-600 dark:text-blue-400">Total</p>
+                      <p className="text-3xl font-bold text-blue-900 dark:text-blue-100">{testimonials.length}</p>
                     </div>
-                    <MessageSquare className=\"h-8 w-8 text-blue-600 dark:text-blue-400\" />
+                    <MessageSquare className="h-8 w-8 text-blue-600 dark:text-blue-400" />
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className=\"border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950\">
-                <CardContent className=\"p-6\">
-                  <div className=\"flex items-center justify-between\">
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <p className=\"text-sm font-medium text-green-600 dark:text-green-400\">Published</p>
-                      <p className=\"text-3xl font-bold text-green-900 dark:text-green-100\">
+                      <p className="text-sm font-medium text-green-600 dark:text-green-400">Published</p>
+                      <p className="text-3xl font-bold text-green-900 dark:text-green-100">
                         {testimonials.filter(t => t.published).length}
                       </p>
                     </div>
-                    <Eye className=\"h-8 w-8 text-green-600 dark:text-green-400\" />
+                    <Eye className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className=\"border-0 shadow-lg bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-950 dark:to-amber-950\">
-                <CardContent className=\"p-6\">
-                  <div className=\"flex items-center justify-between\">
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-950 dark:to-amber-950">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <p className=\"text-sm font-medium text-yellow-600 dark:text-yellow-400\">Featured</p>
-                      <p className=\"text-3xl font-bold text-yellow-900 dark:text-yellow-100\">
+                      <p className="text-sm font-medium text-yellow-600 dark:text-yellow-400">Featured</p>
+                      <p className="text-3xl font-bold text-yellow-900 dark:text-yellow-100">
                         {testimonials.filter(t => t.featured).length}
                       </p>
                     </div>
-                    <Star className=\"h-8 w-8 text-yellow-600 dark:text-yellow-400\" />
+                    <Star className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
                   </div>
                 </CardContent>
               </Card>
@@ -261,22 +261,22 @@ export default function TestimonialManagement() {
 
             {/* Search */}
             <Card>
-              <CardContent className=\"p-6\">
+              <CardContent className="p-6">
                 <Input
-                  placeholder=\"Search testimonials by client name, company, or content...\"
+                  placeholder="Search testimonials by client name, company, or content..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className=\"max-w-md\"
+                  className="max-w-md"
                 />
               </CardContent>
             </Card>
 
             {/* Testimonials List */}
-            <div className=\"space-y-4\">
+            <div className="space-y-4">
               {filteredTestimonials.length === 0 ? (
                 <Card>
-                  <CardContent className=\"p-12 text-center\">
-                    <p className=\"text-slate-600 dark:text-slate-400 text-lg\">
+                  <CardContent className="p-12 text-center">
+                    <p className="text-slate-600 dark:text-slate-400 text-lg">
                       {searchTerm ? 'No testimonials match your search.' : 'No testimonials found. Create your first testimonial!'}
                     </p>
                   </CardContent>
@@ -298,123 +298,123 @@ export default function TestimonialManagement() {
 
           {/* Create/Edit Form */}
           {isCreating && (
-            <div className=\"lg:col-span-1\">
-              <Card className=\"sticky top-8\">
+            <div className="lg:col-span-1">
+              <Card className="sticky top-8">
                 <CardHeader>
-                  <CardTitle className=\"flex items-center gap-2\">
-                    <User className=\"h-5 w-5\" />
+                  <CardTitle className="flex items-center gap-2">
+                    <User className="h-5 w-5" />
                     {editingId ? 'Edit Testimonial' : 'New Testimonial'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className=\"space-y-4\">
-                    <div className=\"space-y-2\">
-                      <Label htmlFor=\"clientName\">Client Name *</Label>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="clientName">Client Name *</Label>
                       <Input
-                        id=\"clientName\"
-                        value={formData.clientName}
-                        onChange={(e) => setFormData(prev => ({ ...prev, clientName: e.target.value }))}
-                        placeholder=\"John Doe\"
+                        id="clientName"
+                        value={formData.client_name}
+                        onChange={(e) => setFormData(prev => ({ ...prev, client_name: e.target.value }))}
+                        placeholder="John Doe"
                         required
                       />
                     </div>
 
-                    <div className=\"space-y-2\">
-                      <Label htmlFor=\"clientTitle\">Client Title *</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="clientTitle">Client Title *</Label>
                       <Input
-                        id=\"clientTitle\"
-                        value={formData.clientTitle}
-                        onChange={(e) => setFormData(prev => ({ ...prev, clientTitle: e.target.value }))}
-                        placeholder=\"CEO\"
+                        id="clientTitle"
+                        value={formData.client_title}
+                        onChange={(e) => setFormData(prev => ({ ...prev, client_title: e.target.value }))}
+                        placeholder="CEO"
                         required
                       />
                     </div>
 
-                    <div className=\"space-y-2\">
-                      <Label htmlFor=\"clientCompany\">Company *</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="clientCompany">Company *</Label>
                       <Input
-                        id=\"clientCompany\"
-                        value={formData.clientCompany}
-                        onChange={(e) => setFormData(prev => ({ ...prev, clientCompany: e.target.value }))}
-                        placeholder=\"Tech Company\"
+                        id="clientCompany"
+                        value={formData.client_company}
+                        onChange={(e) => setFormData(prev => ({ ...prev, client_company: e.target.value }))}
+                        placeholder="Tech Company"
                         required
                       />
                     </div>
 
-                    <div className=\"space-y-2\">
-                      <Label htmlFor=\"clientImage\">Client Image URL</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="clientImage">Client Image URL</Label>
                       <Input
-                        id=\"clientImage\"
-                        value={formData.clientImage}
-                        onChange={(e) => setFormData(prev => ({ ...prev, clientImage: e.target.value }))}
-                        placeholder=\"https://example.com/image.jpg\"
+                        id="clientImage"
+                        value={formData.client_image}
+                        onChange={(e) => setFormData(prev => ({ ...prev, client_image: e.target.value }))}
+                        placeholder="https://example.com/image.jpg"
                       />
                     </div>
 
-                    <div className=\"space-y-2\">
-                      <Label htmlFor=\"testimonialText\">Testimonial *</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="testimonialText">Testimonial *</Label>
                       <Textarea
-                        id=\"testimonialText\"
-                        value={formData.testimonialText}
-                        onChange={(e) => setFormData(prev => ({ ...prev, testimonialText: e.target.value }))}
-                        placeholder=\"Working with [Your Name] was an amazing experience...\"
+                        id="testimonialText"
+                        value={formData.testimonial_text}
+                        onChange={(e) => setFormData(prev => ({ ...prev, testimonial_text: e.target.value }))}
+                        placeholder="Working with [Your Name] was an amazing experience..."
                         rows={4}
                         required
                       />
                     </div>
 
-                    <div className=\"space-y-2\">
-                      <Label htmlFor=\"rating\">Rating</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="rating">Rating</Label>
                       <Input
-                        id=\"rating\"
-                        type=\"number\"
-                        min=\"1\"
-                        max=\"5\"
+                        id="rating"
+                        type="number"
+                        min="1"
+                        max="5"
                         value={formData.rating}
                         onChange={(e) => setFormData(prev => ({ ...prev, rating: parseInt(e.target.value) || 5 }))}
                       />
                     </div>
 
-                    <div className=\"space-y-2\">
-                      <Label htmlFor=\"projectId\">Related Project ID</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="projectId">Related Project ID</Label>
                       <Input
-                        id=\"projectId\"
-                        value={formData.projectId}
-                        onChange={(e) => setFormData(prev => ({ ...prev, projectId: e.target.value }))}
-                        placeholder=\"Optional project ID\"
+                        id="projectId"
+                        value={formData.project_id}
+                        onChange={(e) => setFormData(prev => ({ ...prev, project_id: e.target.value }))}
+                        placeholder="Optional project ID"
                       />
                     </div>
 
-                    <div className=\"flex items-center gap-4\">
-                      <div className=\"flex items-center space-x-2\">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center space-x-2">
                         <Switch
-                          id=\"featured\"
+                          id="featured"
                           checked={formData.featured}
                           onCheckedChange={(checked) => setFormData(prev => ({ ...prev, featured: checked }))}
                         />
-                        <Label htmlFor=\"featured\">Featured</Label>
+                        <Label htmlFor="featured">Featured</Label>
                       </div>
-                      <div className=\"flex items-center space-x-2\">
+                      <div className="flex items-center space-x-2">
                         <Switch
-                          id=\"published\"
+                          id="published"
                           checked={formData.published}
                           onCheckedChange={(checked) => setFormData(prev => ({ ...prev, published: checked }))}
                         />
-                        <Label htmlFor=\"published\">Published</Label>
+                        <Label htmlFor="published">Published</Label>
                       </div>
                     </div>
 
-                    <div className=\"flex gap-2 pt-4\">
+                    <div className="flex gap-2 pt-4">
                       <Button
-                        type=\"submit\"
+                        type="submit"
                         disabled={createMutation.isPending || updateMutation.isPending}
-                        className=\"bg-blue-600 hover:bg-blue-700 text-white flex-1\"
+                        className="bg-blue-600 hover:bg-blue-700 text-white flex-1"
                       >
                         {createMutation.isPending || updateMutation.isPending ? 'Saving...' : editingId ? 'Update' : 'Create'}
                       </Button>
                       <Button
-                        type=\"button\"
-                        variant=\"outline\"
+                        type="button"
+                        variant="outline"
                         onClick={resetForm}
                       >
                         Cancel
@@ -447,34 +447,34 @@ function TestimonialCard({
   onTogglePublished 
 }: TestimonialCardProps) {
   return (
-    <Card className=\"border-0 shadow-lg hover:shadow-xl transition-shadow duration-300\">
-      <CardContent className=\"p-6\">
-        <div className=\"flex items-start gap-4\">
+    <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+      <CardContent className="p-6">
+        <div className="flex items-start gap-4">
           {/* Client Image */}
-          <div className=\"flex-shrink-0\">
-            {testimonial.clientImage ? (
+          <div className="flex-shrink-0">
+            {testimonial.client_image ? (
               <img
-                src={testimonial.clientImage}
-                alt={testimonial.clientName}
-                className=\"w-12 h-12 rounded-full object-cover\"
+                src={testimonial.client_image}
+                alt={testimonial.client_name}
+                className="w-12 h-12 rounded-full object-cover"
               />
             ) : (
-              <div className=\"w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center\">
-                <User className=\"h-6 w-6 text-slate-400\" />
+              <div className="w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center">
+                <User className="h-6 w-6 text-slate-400" />
               </div>
             )}
           </div>
 
           {/* Content */}
-          <div className=\"flex-1 min-w-0\">
-            <div className=\"flex items-start justify-between mb-2\">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between mb-2">
               <div>
-                <h3 className=\"font-semibold text-slate-900 dark:text-white\">{testimonial.clientName}</h3>
-                <p className=\"text-sm text-slate-600 dark:text-slate-400\">
-                  {testimonial.clientTitle} at {testimonial.clientCompany}
+                <h3 className="font-semibold text-slate-900 dark:text-white">{testimonial.client_name}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  {testimonial.client_title} at {testimonial.client_company}
                 </p>
               </div>
-              <div className=\"flex items-center gap-2 ml-4\">
+              <div className="flex items-center gap-2 ml-4">
                 <Badge 
                   variant={testimonial.published ? 'default' : 'secondary'}
                   className={testimonial.published 
@@ -485,20 +485,20 @@ function TestimonialCard({
                   {testimonial.published ? 'Published' : 'Draft'}
                 </Badge>
                 {testimonial.featured && (
-                  <Badge className=\"bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200\">
-                    <Star className=\"h-3 w-3 mr-1\" />
+                  <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                    <Star className="h-3 w-3 mr-1" />
                     Featured
                   </Badge>
                 )}
               </div>
             </div>
 
-            <p className=\"text-slate-600 dark:text-slate-300 mb-4 line-clamp-3\">
-              \"{testimonial.testimonialText}\"
+            <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-3">
+              "{testimonial.testimonial_text}"
             </p>
 
             {testimonial.rating && (
-              <div className=\"flex items-center mb-4\">
+              <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -509,27 +509,27 @@ function TestimonialCard({
                     }`}
                   />
                 ))}
-                <span className=\"ml-2 text-sm text-slate-600 dark:text-slate-400\">
+                <span className="ml-2 text-sm text-slate-600 dark:text-slate-400">
                   {testimonial.rating}/5
                 </span>
               </div>
             )}
 
             {/* Actions */}
-            <div className=\"flex items-center gap-2\">
+            <div className="flex items-center gap-2">
               <Button
-                size=\"sm\"
-                variant=\"outline\"
+                size="sm"
+                variant="outline"
                 onClick={() => onEdit(testimonial)}
-                className=\"border-blue-200 text-blue-700 hover:bg-blue-50 dark:border-blue-800 dark:text-blue-300 dark:hover:bg-blue-950\"
+                className="border-blue-200 text-blue-700 hover:bg-blue-50 dark:border-blue-800 dark:text-blue-300 dark:hover:bg-blue-950"
               >
-                <Edit className=\"h-4 w-4 mr-2\" />
+                <Edit className="h-4 w-4 mr-2" />
                 Edit
               </Button>
               
               <Button
-                size=\"sm\"
-                variant=\"outline\"
+                size="sm"
+                variant="outline"
                 onClick={() => onToggleFeatured(testimonial.id)}
                 className={testimonial.featured 
                   ? 'border-yellow-200 text-yellow-700 bg-yellow-50 hover:bg-yellow-100 dark:border-yellow-800 dark:text-yellow-300 dark:bg-yellow-950 dark:hover:bg-yellow-900' 
@@ -541,8 +541,8 @@ function TestimonialCard({
               </Button>
               
               <Button
-                size=\"sm\"
-                variant=\"outline\"
+                size="sm"
+                variant="outline"
                 onClick={() => onTogglePublished(testimonial.id)}
                 className={testimonial.published 
                   ? 'border-green-200 text-green-700 bg-green-50 hover:bg-green-100 dark:border-green-800 dark:text-green-300 dark:bg-green-950 dark:hover:bg-green-900' 
@@ -553,12 +553,12 @@ function TestimonialCard({
               </Button>
               
               <Button
-                size=\"sm\"
-                variant=\"outline\"
-                onClick={() => onDelete(testimonial.id, testimonial.clientName)}
-                className=\"border-red-200 text-red-700 hover:bg-red-50 dark:border-red-800 dark:text-red-300 dark:hover:bg-red-950\"
+                size="sm"
+                variant="outline"
+                onClick={() => onDelete(testimonial.id, testimonial.client_name)}
+                className="border-red-200 text-red-700 hover:bg-red-50 dark:border-red-800 dark:text-red-300 dark:hover:bg-red-950"
               >
-                <Trash2 className=\"h-4 w-4 mr-2\" />
+                <Trash2 className="h-4 w-4 mr-2" />
                 Delete
               </Button>
             </div>

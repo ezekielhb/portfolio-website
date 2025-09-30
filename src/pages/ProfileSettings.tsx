@@ -21,14 +21,14 @@ export default function ProfileSettings() {
     name: '',
     title: '',
     bio: '',
-    profileImage: '',
-    heroImage: '',
+    profile_image: '',
+    hero_image: '',
     location: '',
     email: '',
     phone: '',
     website: '',
     resume: '',
-    socialLinks: {
+    social_links: {
       linkedin: '',
       github: '',
       twitter: '',
@@ -69,14 +69,14 @@ export default function ProfileSettings() {
         name: profile.name,
         title: profile.title,
         bio: profile.bio,
-        profileImage: profile.profileImage,
-        heroImage: profile.heroImage || '',
+        profile_image: profile.profile_image,
+        hero_image: profile.hero_image || '',
         location: profile.location || '',
         email: profile.email,
         phone: profile.phone || '',
         website: profile.website || '',
         resume: profile.resume || '',
-        socialLinks: profile.socialLinks,
+        social_links: profile.social_links,
         skills: profile.skills,
         experience: profile.experience,
         availability: profile.availability
@@ -96,8 +96,8 @@ export default function ProfileSettings() {
   const handleSocialLinkChange = (platform: string, value: string) => {
     setFormData(prev => ({
       ...prev,
-      socialLinks: {
-        ...prev.socialLinks,
+      social_links: {
+        ...prev.social_links,
         [platform]: value
       }
     }));
@@ -255,8 +255,8 @@ export default function ProfileSettings() {
                   <Label htmlFor=\"profileImage\">Profile Image *</Label>
                   <Input
                     id=\"profileImage\"
-                    value={formData.profileImage}
-                    onChange={(e) => handleInputChange('profileImage', e.target.value)}
+                    value={formData.profile_image}
+                    onChange={(e) => handleInputChange('profile_image', e.target.value)}
                     placeholder=\"Profile image URL\"
                     required
                   />
@@ -268,8 +268,8 @@ export default function ProfileSettings() {
                   <Label htmlFor=\"heroImage\">Hero Background Image</Label>
                   <Input
                     id=\"heroImage\"
-                    value={formData.heroImage}
-                    onChange={(e) => handleInputChange('heroImage', e.target.value)}
+                    value={formData.hero_image}
+                    onChange={(e) => handleInputChange('hero_image', e.target.value)}
                     placeholder=\"Hero section background URL\"
                   />
                   <p className=\"text-sm text-slate-500 dark:text-slate-400\">
@@ -279,12 +279,12 @@ export default function ProfileSettings() {
               </div>
 
               {/* Image Preview */}
-              {formData.profileImage && (
+              {formData.profile_image && (
                 <div className=\"space-y-2\">
                   <Label>Profile Image Preview</Label>
                   <div className=\"w-32 h-32 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700\">
                     <img
-                      src={formData.profileImage}
+                      src={formData.profile_image}
                       alt=\"Profile preview\"
                       className=\"w-full h-full object-cover\"
                     />
@@ -363,7 +363,7 @@ export default function ProfileSettings() {
                   <Label htmlFor=\"linkedin\">LinkedIn</Label>
                   <Input
                     id=\"linkedin\"
-                    value={formData.socialLinks.linkedin}
+                    value={formData.social_links.linkedin}
                     onChange={(e) => handleSocialLinkChange('linkedin', e.target.value)}
                     placeholder=\"https://linkedin.com/in/yourprofile\"
                   />
@@ -372,7 +372,7 @@ export default function ProfileSettings() {
                   <Label htmlFor=\"github\">GitHub</Label>
                   <Input
                     id=\"github\"
-                    value={formData.socialLinks.github}
+                    value={formData.social_links.github}
                     onChange={(e) => handleSocialLinkChange('github', e.target.value)}
                     placeholder=\"https://github.com/yourusername\"
                   />
@@ -384,7 +384,7 @@ export default function ProfileSettings() {
                   <Label htmlFor=\"twitter\">Twitter</Label>
                   <Input
                     id=\"twitter\"
-                    value={formData.socialLinks.twitter}
+                    value={formData.social_links.twitter}
                     onChange={(e) => handleSocialLinkChange('twitter', e.target.value)}
                     placeholder=\"https://twitter.com/yourusername\"
                   />
@@ -393,7 +393,7 @@ export default function ProfileSettings() {
                   <Label htmlFor=\"dribbble\">Dribbble</Label>
                   <Input
                     id=\"dribbble\"
-                    value={formData.socialLinks.dribbble}
+                    value={formData.social_links.dribbble}
                     onChange={(e) => handleSocialLinkChange('dribbble', e.target.value)}
                     placeholder=\"https://dribbble.com/yourusername\"
                   />
@@ -405,7 +405,7 @@ export default function ProfileSettings() {
                   <Label htmlFor=\"behance\">Behance</Label>
                   <Input
                     id=\"behance\"
-                    value={formData.socialLinks.behance}
+                    value={formData.social_links.behance}
                     onChange={(e) => handleSocialLinkChange('behance', e.target.value)}
                     placeholder=\"https://behance.net/yourusername\"
                   />
@@ -414,7 +414,7 @@ export default function ProfileSettings() {
                   <Label htmlFor=\"instagram\">Instagram</Label>
                   <Input
                     id=\"instagram\"
-                    value={formData.socialLinks.instagram}
+                    value={formData.social_links.instagram}
                     onChange={(e) => handleSocialLinkChange('instagram', e.target.value)}
                     placeholder=\"https://instagram.com/yourusername\"
                   />
