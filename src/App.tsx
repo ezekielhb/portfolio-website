@@ -4,6 +4,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Index from './pages/Index';
 import CaseStudy from './pages/CaseStudy';
+import Admin from './pages/Admin';
+import ProjectForm from './pages/ProjectForm';
+import ProfileSettings from './pages/ProfileSettings';
+import TestimonialManagement from './pages/TestimonialManagement';
+import ContactSettings from './pages/ContactSettings';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -16,6 +21,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/case-study/:id" element={<CaseStudy />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/project/new" element={<ProjectForm />} />
+          <Route path="/admin/project/edit/:id" element={<ProjectForm />} />
+          <Route path="/admin/profile" element={<ProfileSettings />} />
+          <Route path="/admin/testimonials" element={<TestimonialManagement />} />
+          <Route path="/admin/contact" element={<ContactSettings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

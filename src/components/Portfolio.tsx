@@ -3,21 +3,20 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  category: string;
-  featured: boolean;
-}
+import { useQuery } from '@tanstack/react-query';
+import { ProjectService } from '@/services/projectService';
+import type { Project } from '@/types/project';
 
 export default function Portfolio() {
   const navigate = useNavigate();
 
-  const projects: Project[] = [
+  // Fetch featured projects from backend
+  const { data: projects = [], isLoading, error } = useQuery({
+    queryKey: ['featured-projects'],
+    queryFn: ProjectService.getFeaturedProjects
+  });
+
+  const fallbackProjects: Project[] = [
     {
       id: 'fintech-dashboard',
       title: 'FinTech Dashboard',
@@ -40,7 +39,7 @@ export default function Portfolio() {
       id: 'healthcare-platform',
       title: 'Healthcare Management Platform',
       description: 'Patient management system for healthcare providers with appointment scheduling and medical records.',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1691934286085-c88039d93dae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
       tags: ['Healthcare', 'Platform', 'Web App'],
       category: 'SaaS',
       featured: false
@@ -74,9 +73,43 @@ export default function Portfolio() {
     }
   ];
 
+  // Use backend data if available, otherwise fallback to hardcoded data
+  const displayProjects = projects.length > 0 ? projects : fallbackProjects.filter(p => p.featured);
+
   const handleViewCaseStudy = (projectId: string) => {
     navigate(`/case-study/${projectId}`);
   };
+
+  if (isLoading) {
+    return (
+      <section id="portfolio" className="py-20 bg-slate-50 dark:bg-slate-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Featured Projects
+            </h2>
+            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+              Loading projects...
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, index) => (
+              <Card key={index} className="overflow-hidden border-0 shadow-lg bg-white dark:bg-slate-900">
+                <div className="w-full h-48 bg-slate-200 dark:bg-slate-700 animate-pulse"></div>
+                <CardContent className="p-6">
+                  <div className="space-y-3">
+                    <div className="h-4 bg-slate-200 dark:bg-slate-700 animate-pulse rounded"></div>
+                    <div className="h-6 bg-slate-200 dark:bg-slate-700 animate-pulse rounded"></div>
+                    <div className="h-4 bg-slate-200 dark:bg-slate-700 animate-pulse rounded w-3/4"></div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="portfolio" className="py-20 bg-slate-50 dark:bg-slate-800">
@@ -91,7 +124,7 @@ export default function Portfolio() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {displayProjects.map((project, index) => (
             <Card 
               key={project.id} 
               className="group cursor-pointer overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white dark:bg-slate-900"

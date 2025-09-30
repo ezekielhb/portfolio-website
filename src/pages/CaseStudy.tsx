@@ -1,32 +1,25 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, ExternalLink, Clock, Users, TrendingUp } from 'lucide-react';
-
-interface CaseStudyData {
-  id: string;
-  title: string;
-  subtitle: string;
-  heroImage: string;
-  overview: string;
-  problem: string;
-  process: string[];
-  solution: string;
-  results: string[];
-  images: string[];
-  tags: string[];
-  duration: string;
-  team: string;
-  impact: string;
-}
+import { ProjectService } from '@/services/projectService';
+import type { Project } from '@/types/project';
 
 export default function CaseStudy() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // Mock case study data - in a real app, this would come from an API or database
-  const caseStudyData: Record<string, CaseStudyData> = {
+  // Fetch project data from backend
+  const { data: project, isLoading, error } = useQuery({
+    queryKey: ['project', id],
+    queryFn: () => ProjectService.getProjectById(id!),
+    enabled: !!id
+  });
+
+  // Fallback case study data
+  const fallbackCaseStudyData: Record<string, Project> = {
     'fintech-dashboard': {
       id: 'fintech-dashboard',
       title: 'FinTech Dashboard',
@@ -64,7 +57,7 @@ export default function CaseStudy() {
       id: 'food-delivery-app',
       title: 'Food Delivery Mobile App',
       subtitle: 'Connecting Local Restaurants with Hungry Customers',
-      heroImage: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=1200&h=600&fit=crop',
+      heroImage: 'https://images.unsplash.com/photo-1730817403476-6b2b9e1fb827?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
       overview: 'A mobile-first food delivery application designed to connect local restaurants with customers. The app needed to provide seamless ordering, real-time tracking, and an engaging user experience for both customers and restaurant partners.',
       problem: 'Local restaurants struggled to compete with major delivery platforms due to high commission fees. Customers wanted a more personalized experience with local favorites, but existing solutions were generic and impersonal.',
       process: [
@@ -95,7 +88,37 @@ export default function CaseStudy() {
     }
   };
 
-  const caseStudy = caseStudyData[id || ''] || caseStudyData['fintech-dashboard'];
+  // Use backend data if available, otherwise fallback data, or default to first fallback
+  const caseStudy = project || fallbackCaseStudyData[id || ''] || fallbackCaseStudyData['fintech-dashboard'];
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-slate-600 dark:text-slate-400">Loading project...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !caseStudy) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center">
+        <Card className="max-w-md w-full">
+          <CardContent className="p-6 text-center">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Project Not Found</h1>
+            <p className="text-slate-600 dark:text-slate-400 mb-6">
+              The project you're looking for doesn't exist or has been removed.
+            </p>
+            <Button onClick={() => navigate('/')} className="bg-blue-600 hover:bg-blue-700 text-white">
+              Back to Portfolio
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
@@ -124,7 +147,7 @@ export default function CaseStudy() {
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <div className="max-w-4xl mx-auto text-white">
             <h1 className="text-5xl font-bold mb-4">{caseStudy.title}</h1>
-            <p className="text-xl opacity-90">{caseStudy.subtitle}</p>
+            <p className="text-xl opacity-90">{caseStudy.subtitle || caseStudy.description}</p>
           </div>
         </div>
       </section>
